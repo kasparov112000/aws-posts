@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   //  apiUrl: "http://localhost:3000/api"
-   apiUrl: "http://Biolinkdepot-env.srfrwdmk7z.us-east-2.elasticbeanstalk.com/api"
+   // apiUrl: "http://Biolinkdepot-env.srfrwdmk7z.us-east-2.elasticbeanstalk.com/api"
    //  apiUrl: "http://bio2-env.2p5bbyxw9r.us-east-2.elasticbeanstalk.com/api"
+  apiUrl: "https://lit-mountain-42388.herokuapp.com/api"
 };
 
 /*
