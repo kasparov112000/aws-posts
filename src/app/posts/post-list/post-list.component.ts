@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import { PageEvent } from "@angular/material";
 import { Subscription } from "rxjs";
 
@@ -17,6 +17,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   //   { title: "Second Post", content: "This is the second post's content" },
   //   { title: "Third Post", content: "This is the third post's content" }
   // ];
+  @Input() article: Post;
   posts: Post[] = [];
   isLoading = false;
   totalPosts = 0;

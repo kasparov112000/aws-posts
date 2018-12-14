@@ -3,9 +3,11 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
 
 import { environment } from "../../environments/environment";
 import { Post } from "./post.model";
+import { ApiService } from "./api.service";
 
 const BACKEND_URL = environment.apiUrl + "/posts/";
 
@@ -14,7 +16,7 @@ export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<{ posts: Post[]; postCount: number }>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private apiService: ApiService) {}
 
   getPosts(postsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
@@ -102,5 +104,13 @@ export class PostsService {
 
   deletePost(postId: string) {
     return this.http.delete(BACKEND_URL + postId);
+  }
+
+  favorite(slug): Observable<Post> {
+    return this.apiService.post('/articles/' + slug + '/favorite');
+  }
+
+  unfavorite(slug): Observable<Post> {
+    return this.apiService.delete('/articles/' + slug + '/favorite');
   }
 }

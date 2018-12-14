@@ -10,10 +10,10 @@ const app = express();
  
 var dbURI =  'mongodb://omar:omar111@ds129442.mlab.com:29442/renatotasklist';
 var dbURI2 =  'mongodb://localhost/Biolinkdepot';
+
 mongoose
   .connect(
     dbURI
-
   )
   .then(() => {
     console.log("Connected to database!");
