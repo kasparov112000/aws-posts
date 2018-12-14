@@ -1,4 +1,5 @@
 export interface Post {
+  type: string;
   slug?: string;
   id: string;
   title: string;
@@ -7,4 +8,11 @@ export interface Post {
   creator: string;
   favorited?: boolean;
   favoritesCount?: number;
+  filters: {
+    tag?: string,
+    author?: string,
+    favorited?: string,
+    limit?: number,
+    offset?: number
+  };
 }
