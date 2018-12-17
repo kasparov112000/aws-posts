@@ -46,7 +46,7 @@ exports.userLogin = (req, res, next) => {
       }
       const token = jwt.sign(
         { email: fetchedUser.email, userId: fetchedUser._id },
-        process.env.JWT_KEY,
+        /*process.env.JWT_KEY*/ 'secret_this_should_be_longer',  //"JWT_KEY": "secret_this_should_be_longer"
         { expiresIn: "1h" }
       );
       res.status(200).json({
@@ -57,6 +57,7 @@ exports.userLogin = (req, res, next) => {
     })
     .catch(err => {
       return res.status(401).json({
+        err_number: err._id,
         message: "Invalid authentication credentials!"
       });
     });
