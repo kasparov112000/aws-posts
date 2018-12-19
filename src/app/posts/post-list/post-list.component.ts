@@ -74,4 +74,13 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
   }
+  onToggleFavorite(favorited: boolean) {
+    this.article['favorited'] = favorited;
+
+    if (favorited) {
+      this.article['favoritesCount']++;
+    } else {
+      this.article['favoritesCount']--;
+    }
+  }
 }
