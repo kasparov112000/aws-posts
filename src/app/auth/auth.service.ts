@@ -31,6 +31,8 @@ export class AuthService {
   }
 
   getAuthStatusListener() {
+    this.authStatusListener.asObservable().subscribe(val => 
+      console.log(val));
     return this.authStatusListener.asObservable();
   }
 

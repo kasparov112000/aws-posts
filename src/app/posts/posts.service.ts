@@ -28,19 +28,24 @@ export class PostsService {
         map(postData => {
           return {
             posts: postData.posts.map(post => {
+           //  console.log(post);
               return {
                 title: post.title,
                 content: post.content,
                 id: post._id,
                 imagePath: post.imagePath,
-                creator: post.creator
+                creator: post.creator,
+                favorited: post.favorited,
+                slug: post.slug
               };
+              
             }),
             maxPosts: postData.maxPosts
           };
         })
       )
       .subscribe(transformedPostData => {
+        console.log('tramsformed data' + transformedPostData)
         this.posts = transformedPostData.posts;
         this.postsUpdated.next({
           posts: [...this.posts],
@@ -62,6 +67,12 @@ export class PostsService {
       creator: string;
     }>(BACKEND_URL + id);
   }
+
+  get(slug): Observable<Post> {
+    return this.apiService.get('/articles/' + slug)
+      .pipe(map(data => data.article));
+  }
+
 
   addPost(title: string, content: string, image: File) {
     const postData = new FormData();
@@ -92,7 +103,8 @@ export class PostsService {
         title: title,
         content: content,
         imagePath: image,
-        creator: null
+        creator: null,
+        favorited: false
       };
     }
     this.http
@@ -103,14 +115,16 @@ export class PostsService {
   }
 
   deletePost(postId: string) {
+    console.log(postId);
+
     return this.http.delete(BACKEND_URL + postId);
   }
 
   favorite(slug): Observable<Post> {
+    console.log('i am in post.service.ts favorite function' + slug);
     return this.apiService.post('/articles/' + slug + '/favorite');
   }
-
-  unfavorite(slug): Observable<Post> {
+ unfavorite(slug): Observable<Post> {
     return this.apiService.delete('/articles/' + slug + '/favorite');
   }
 }

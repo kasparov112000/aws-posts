@@ -5,7 +5,7 @@ export interface Post {
   content: string;
   imagePath: string;
   creator: string;
-  favorited?: boolean;
+  favorited: boolean;
   favoritesCount?: number;
   filters?: {
     tag?: string,
