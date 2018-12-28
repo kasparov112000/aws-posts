@@ -141,7 +141,7 @@ export class PostsService {
  const theBody = JSON.stringify(body);
 
     console.log('i am in post.service.ts favorite function' + post);
-    return this.http.post<any>(BACKEND_URL1 + '/' + post.slug + '/favorite', body).subscribe(responseData => {
+    return this.http.post<any>(BACKEND_URL +  post.slug + '/favorite', body).subscribe(responseData => {
        console.log('favorite post response' + responseData);       
      // this.router.navigate(["/auth/login"]);
     });
