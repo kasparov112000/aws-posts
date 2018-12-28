@@ -32,6 +32,11 @@ export class PostListComponent implements OnInit, OnDestroy {
   private postsSub: Subscription;
   private authStatusSub: Subscription;
   autoRenew = new FormControl();
+  private authSub: Subscription;
+  checked = true;
+  disabled = false;
+  color = 'warn';
+
   constructor(
     public postsService: PostsService,
     private authService: AuthService,
@@ -46,6 +51,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   totalPages: Array<number> = [1];
 
   ngOnInit() {
+
     this.isLoading = true;
     this.postsService.getPosts(this.postsPerPage, this.currentPage);
     this.userId = this.authService.getUserId();
@@ -88,11 +94,11 @@ export class PostListComponent implements OnInit, OnDestroy {
    //   this.totalPages = Array.from(new Array(Math.ceil(data.articlesCount / this.limit)), (val, index) => index + 1);
   //  });
   }
-  onChange(article:Post) {
+  onChange(article) {
   let favorited = this.autoRenew.value;
 
   article['favorited'] = favorited;
-  console.log(this.autoRenew.value);
+  // console.log('useer is auth' + this.userIsAuthenticated);
 
   // if (favorited) {
   //   article['favoritesCount']++;
@@ -103,49 +109,27 @@ export class PostListComponent implements OnInit, OnDestroy {
 //console.log(article['favorited']);
 
   this.isSubmitting = true;
-   // this.authService.getAuthStatusListener().pipe(concatMap(
-    let obs = this.authService.getAuthStatusListener();
 
-    obs.subscribe(authenticated => {
-        // Not authenticated? Push to login screen
-        console.log('estttttt');
-        
-        console.log('testtttttt' + authenticated);
-        if (!authenticated) {
+       if (!this.userIsAuthenticated) {
           this.router.navigateByUrl('/login');
-        console.log('no authen');
           return of(null);
         }
         
         // Favorite the article if it isn't favorited yet
-        console.log('article.favorited ' + article.favorited)
+        console.log('article.favorited::: ' + article.slug)
         if (!article.favorited) {
-          console.log(article.favorited);
-          return this.postsService.favorite(article.slug)
-          .pipe(tap(
-            data => {
-              this.isSubmitting = false;
-            //  this.toggle.emit(true);
-            },
-            err => this.isSubmitting = false
-          ));
-
+          console.log('article favorited ' + article.favorited);
+         // this.postsService.favorite(article.slug,article);
+          return this.postsService.favorite(article, this.userId);          
         // Otherwise, unfavorite the article
         } else {
           console.log('else' + article.favorited);
-          return this.postsService.unfavorite(article.slug)
-          .pipe(tap(
-            data => {
-              this.isSubmitting = false;
-          //    this.toggle.emit(false);
-            },
-            err => this.isSubmitting = false
-          ));
-        }
+      //   return this.postsService.unfavorite(article.slug)
+           console.log('article favorited ' + article.favorited);
 
-      }
-    );
-} 
+          return this.postsService.favorite(article, this.userId)
+          }}
+    
 // onToggleFavorite(favorited: boolean) {
 //   this.article['favorited'] = favorited;
 
@@ -155,7 +139,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 //     this.article['favoritesCount']--;
 //   }
 // }
-
+  
   onChangedPage(pageData: PageEvent) {
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
@@ -10,7 +10,7 @@ import { Post } from "./post.model";
 import { ApiService } from "./api.service";
 
 const BACKEND_URL = environment.apiUrl + "/posts/";
-
+const BACKEND_URL1 = environment.apiUrl + "/posts";
 @Injectable({ providedIn: "root" })
 export class PostsService {
   private posts: Post[] = [];
@@ -120,11 +120,32 @@ export class PostsService {
     return this.http.delete(BACKEND_URL + postId);
   }
 
-  favorite(slug): Observable<Post> {
-    console.log('i am in post.service.ts favorite function' + slug);
-    return this.apiService.post('/articles/' + slug + '/favorite');
+  favorite(post: Post, userId) {
+    console.log('I am in post.service favorite function slug is:' + post)
+    const postData = new FormData();
+   
+    postData.append("userId", userId);
+    postData.append("slug", post.slug);
+    
+    const body: any = {
+        
+        'userId' : userId,
+        'slug' : post.slug,
+        'post' : post
+       
+    }
+   // ).set(';userId', userId).set(thePost);
+   // postData.append("slug", 'slug');
+   console.log('paramsss:'+ JSON.stringify(body));
+  // console.log('postData:'+ JSON.stringify(postData));
+ const theBody = JSON.stringify(body);
+
+    console.log('i am in post.service.ts favorite function' + post);
+    return this.http.post<any>(BACKEND_URL1 + '/' + post.slug + '/favorite', body).subscribe(responseData => {
+       console.log('favorite post response' + responseData);       
+     // this.router.navigate(["/auth/login"]);
+    });
   }
- unfavorite(slug): Observable<Post> {
-    return this.apiService.delete('/articles/' + slug + '/favorite');
-  }
+
+
 }

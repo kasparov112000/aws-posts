@@ -31,6 +31,8 @@ export class ApiService {
   }
 
   post(path: string, body: Object = {}): Observable<any> {
+    console.log('i am in api.service post function');
+    
     console.log(`${path}`);
 
     return this.http.post(
