@@ -8,10 +8,12 @@ import { Observable } from 'rxjs';
 import { environment } from "../../environments/environment";
 import { Post } from "./post.model";
 import { ApiService } from "./api.service";
+import { ArticleListConfig } from "./article-list-config.model";
 
 const BACKEND_URL = environment.apiUrl + "/posts/";
 const BACKEND_URL1 = environment.apiUrl + "/posts";
 @Injectable({ providedIn: "root" })
+
 export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<{ posts: Post[]; postCount: number }>();
@@ -20,6 +22,7 @@ export class PostsService {
 
   getPosts(postsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
+    const userData = {}
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
         BACKEND_URL + queryParams
@@ -45,7 +48,7 @@ export class PostsService {
         })
       )
       .subscribe(transformedPostData => {
-        console.log('tramsformed data' + transformedPostData)
+     //   console.log('tramsformed data' + transformedPostData)
         this.posts = transformedPostData.posts;
         this.postsUpdated.next({
           posts: [...this.posts],
@@ -119,7 +122,9 @@ export class PostsService {
 
     return this.http.delete(BACKEND_URL + postId);
   }
-
+  unfavorite(slug): Observable<Post> {
+    return this.apiService.delete('/articles/' + slug + '/favorite');
+  }
   favorite(post: Post, userId) {
     console.log('I am in post.service favorite function slug is:' + post)
     const postData = new FormData();

@@ -21,7 +21,7 @@
           [(ngModel)]="sliderChecked"
           [checked]="post.favorited"
           (change)="onChange(post)"
-          [formControl]="autoRenew">
+          [formControl]="autoRenew"> {{post.favorited}}
        
       </mat-slide-toggle>
     

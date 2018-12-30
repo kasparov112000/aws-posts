@@ -61,6 +61,8 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
+        console.log(this.posts);
+
       });
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authStatusSub = this.authService
@@ -118,16 +120,16 @@ export class PostListComponent implements OnInit, OnDestroy {
         // Favorite the article if it isn't favorited yet
         console.log('article.favorited::: ' + article.slug)
         if (!article.favorited) {
-          console.log('article favorited ' + article.favorited);
+          console.log('article not favorited ' + article.favorited);
          // this.postsService.favorite(article.slug,article);
           return this.postsService.favorite(article, this.userId);          
         // Otherwise, unfavorite the article
         } else {
           console.log('else' + article.favorited);
       //   return this.postsService.unfavorite(article.slug)
-           console.log('article favorited ' + article.favorited);
+           console.log('article   favorited ' + article.favorited);
 
-          return this.postsService.favorite(article, this.userId)
+          return this.postsService.unfavorite(article.slug)
           }}
     
 // onToggleFavorite(favorited: boolean) {
