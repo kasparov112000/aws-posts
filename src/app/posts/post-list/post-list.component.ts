@@ -97,11 +97,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   //  });
   }
   onChange(article) {
-  let favorited = this.autoRenew.value;
-
-  article['favorited'] = favorited;
-  // console.log('useer is auth' + this.userIsAuthenticated);
-
+ 
+    console.log('useer is auth' + this.userIsAuthenticated);
   this.isSubmitting = true;
 
        if (!this.userIsAuthenticated) {
@@ -117,22 +114,13 @@ export class PostListComponent implements OnInit, OnDestroy {
           return this.postsService.favorite(article, this.userId);          
         // Otherwise, unfavorite the article
         } else {
-          console.log('else' + article.favorited);
+      
       //   return this.postsService.unfavorite(article.slug)
-           console.log('article   favorited ' + article.favorited);
+           console.log('article favorited ' + article.favorited);
 
           return this.postsService.unfavorite(article.slug)
           }}
-    
-// onToggleFavorite(favorited: boolean) {
-//   this.article['favorited'] = favorited;
-
-//   if (favorited) {
-//     this.article['favoritesCount']++;
-//   } else {
-//     this.article['favoritesCount']--;
-//   }
-// }
+ 
   
   onChangedPage(pageData: PageEvent) {
     this.isLoading = true;

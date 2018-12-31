@@ -122,8 +122,12 @@ export class PostsService {
 
     return this.http.delete(BACKEND_URL + postId);
   }
-  unfavorite(slug): Observable<Post> {
-    return this.apiService.delete('/articles/' + slug + '/favorite');
+  unfavorite(slug){
+   // return this.apiService.delete('/articles/' + slug + '/favorite');
+   this.http.delete<any>(BACKEND_URL +  slug + '/favorite').subscribe(responseData => {
+    console.log('favorite post response' + responseData);       
+  // this.router.navigate(["/auth/login"]);
+ });
   }
   favorite(post: Post, userId) {
     console.log('I am in post.service favorite function slug is:' + post)
