@@ -12,17 +12,14 @@
       <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>      
     </mat-action-row>
-        <mat-action-row *ngIf="userIsAuthenticated">
-      
-              
+        <mat-action-row *ngIf="userIsAuthenticated">              
       <mat-slide-toggle
           class="example-margin"
           [color]="color"
-          [(ngModel)]="sliderChecked"
           [checked]="post.favorited"
-          (change)="onChange(post)"
-          [formControl]="autoRenew"> {{post.favorited}}
-       
+         (change)="onChange(post)"
+          [disabled]="disabled"> {{post.favorited}}    
+        
       </mat-slide-toggle>
     
     </mat-action-row>

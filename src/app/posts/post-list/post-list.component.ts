@@ -102,14 +102,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   article['favorited'] = favorited;
   // console.log('useer is auth' + this.userIsAuthenticated);
 
-  // if (favorited) {
-  //   article['favoritesCount']++;
-  // } else {
-  //   article['favoritesCount']--;
-  // }
-//console.log(article);
-//console.log(article['favorited']);
-
   this.isSubmitting = true;
 
        if (!this.userIsAuthenticated) {
