@@ -102,7 +102,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   this.isSubmitting = true;
 
        if (!this.userIsAuthenticated) {
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('auth/login');
           return of(null);
         }
         

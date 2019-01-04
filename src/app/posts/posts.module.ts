@@ -11,8 +11,8 @@ import { ArticleMetaComponent } from "./article-meta.component";
 
 
 @NgModule({
-    
-  declarations: [PostCreateComponent, PostListComponent, FavoriteButtonComponent, ArticleMetaComponent],
+
+  declarations: [ PostCreateComponent, PostListComponent, FavoriteButtonComponent, ArticleMetaComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -20,4 +20,4 @@ import { ArticleMetaComponent } from "./article-meta.component";
     RouterModule
   ]
 })
-export class PostsModule {}
+export class PostsModule { }

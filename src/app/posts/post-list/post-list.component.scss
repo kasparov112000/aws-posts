@@ -23,3 +23,7 @@ mat-paginator {
   width: 100%;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
