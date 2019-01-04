@@ -166,22 +166,18 @@ export class PostsService {
     this.messageService1.add(`PostService: ${message}`);
   }
   /* GET heroes whose name contains search term */
-  searchHeroes1(term: string): any {
+  searchHeroes1(term: string): Observable<Post[]> {
     if (!term.trim())
     {
       // if not search term, return empty hero array.
       return of([]);
     }
-    /*     return this.http.get<Post[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-          tap(_ => this.log(`found heroes matching "${term}"`)),
-          catchError(this.handleError<Hero[]>('searchHeroes', []))
-        ); */
-     this.http.get<Post[]>(`${BACKEND_URL}?name=${term}`).subscribe(data => { 
-       console.log('the data********************')
-       console.log(data);
-      return this})
+  
+   return this.http.get<Post[]>(`${BACKEND_URL}?name=${term}`).pipe(
+       tap(_ => this.log1(`found posts "${term}"`)
+       )
 
-
+     );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
