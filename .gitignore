@@ -6,7 +6,7 @@
 
 # dependencies
 /node_modules
-
+/toh-pt6
 # IDEs and editors
 /.idea
 .project
