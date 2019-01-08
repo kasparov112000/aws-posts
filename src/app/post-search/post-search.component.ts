@@ -11,11 +11,11 @@ import { PostsService } from '../posts/posts.service';
 @Component({
   selector: 'app-post-search',
   templateUrl: './post-search.component.html',
-  styleUrls: ['./post-search.component.css']
+  styleUrls: ['./post-search.component.scss']
 })
 export class PostSearchComponent implements OnInit {
   heroes$: Observable<Post[]>;
-  hers: Post[];
+  hers: any;
   private searchTerms = new Subject<string>();
 
   constructor(private heroService: PostsService) { }
@@ -24,13 +24,10 @@ export class PostSearchComponent implements OnInit {
   search(term: string): void {
     this.searchTerms.next(term)
     this.heroes$.subscribe(heroes => {
-      this.hers = heroes as Post[];
-      console.log('$$$$$$$$$$$$$$$$$$$$$$');
-      console.log(this.hers);
-
-    }
-
-    )
+      this.hers = heroes;
+      //   console.log('$$$$$$$$$$$$$$$$$$$$$$');
+      //   console.log(this.hers);
+    })
 
   }
 

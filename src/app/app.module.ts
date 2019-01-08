@@ -10,16 +10,16 @@ import { ErrorInterceptor } from "./error-interceptor";
 import { ErrorComponent } from "./error/error.component";
 import { AngularMaterialModule } from "./angular-material.module";
 import { PostsModule } from "./posts/posts.module";
-import { PostSearchComponent } from "./post-search/post-search.component";
- 
+import { AdminLayoutModule } from "./admin/admin-layout.module";
+
+
 
 
 @NgModule({
-  declarations: [    
+  declarations: [
     AppComponent,
     HeaderComponent,
-    ErrorComponent,
-    PostSearchComponent
+    ErrorComponent 
   ],
   imports: [
     BrowserModule,
@@ -27,7 +27,8 @@ import { PostSearchComponent } from "./post-search/post-search.component";
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    PostsModule    
+    PostsModule,
+    AdminLayoutModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
@@ -36,4 +37,4 @@ import { PostSearchComponent } from "./post-search/post-search.component";
   bootstrap: [AppComponent],
   entryComponents: [ErrorComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,8 +1,10 @@
+
 <mat-toolbar color="primary">
   <span>
     <a routerLink="/">Biolinkdepot</a>
   </span>
   <span class="spacer"></span>
+  
   <ul>
     <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
@@ -16,10 +18,11 @@
     <li *ngIf="userIsAuthenticated">
       <button mat-button (click)="onLogout()">Logout</button>
     </li>
-    <li>
-      <app-post-search></app-post-search>
+     <li>
+      <a mat-button routerLink="dashboard" routerLinkActive="mat-accent">Admin</a>      
    </li>
-    </ul>
+
+     </ul>
+     
 </mat-toolbar>
 
- 

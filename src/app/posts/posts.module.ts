@@ -8,11 +8,12 @@ import { PostListComponent } from "./post-list/post-list.component";
 import { AngularMaterialModule } from "../angular-material.module";
 import { FavoriteButtonComponent } from "./buttons/favorite-button.component";
 import { ArticleMetaComponent } from "./article-meta.component";
+import { PostSearchComponent } from "../post-search/post-search.component";
 
 
 @NgModule({
 
-  declarations: [ PostCreateComponent, PostListComponent, FavoriteButtonComponent, ArticleMetaComponent],
+  declarations: [ PostSearchComponent, PostCreateComponent, PostListComponent, FavoriteButtonComponent, ArticleMetaComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

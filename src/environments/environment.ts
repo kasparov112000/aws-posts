@@ -7,10 +7,10 @@ export const environment = {
   //  apiUrl: "http://localhost:3000/api"
    // apiUrl: "http://Biolinkdepot-env.srfrwdmk7z.us-east-2.elasticbeanstalk.com/api"
    //  apiUrl: "http://bio2-env.2p5bbyxw9r.us-east-2.elasticbeanstalk.com/api"
-   apiUrl: "https://lit-mountain-42388.herokuapp.com/api",
-  api_url: "https://lit-mountain-42388.herokuapp.com/api",
- // apiUrl: "http://localhost:3000/api",
- // api_url: "http://localhost:3000/api",
+  // apiUrl: "https://lit-mountain-42388.herokuapp.com/api",
+ // api_url: "https://lit-mountain-42388.herokuapp.com/api"
+  apiUrl: "http://localhost:3000/api",
+  api_url: "http://localhost:3000/api",
   JWT_KEY: "secret_this_should_be_longer"
 // apiUrl: "https://mean-course-back.herokuapp.com/api",
 // api_url: "https://lit-mountain-42388.herokuapp.com/api"

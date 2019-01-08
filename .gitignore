@@ -8,6 +8,9 @@
 /node_modules
 /toh-pt6
 /mean-rsvp-auth0
+/Angular-Jumpstart
+/mat-admin
+
 # IDEs and editors
 /.idea
 .project
@@ -37,6 +40,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-
 backend/images

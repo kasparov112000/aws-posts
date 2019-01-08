@@ -173,11 +173,14 @@ export class PostsService {
       return of([]);
     }
   
-   return this.http.get<Post[]>(`${BACKEND_URL}?name=${term}`).pipe(
-       tap(_ => this.log1(`found posts "${term}"`)
-       )
+   return this.http.get<Post[]>(`${BACKEND_URL}?name=${term}`);
+   
+   //.pipe(
+   //    tap(_ => this.log1(`found posts "${term}"`),
+  //     catchError(this.handleError<Post[]>('searchHeroes', []))
+   //    )
 
-     );
+   //  );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

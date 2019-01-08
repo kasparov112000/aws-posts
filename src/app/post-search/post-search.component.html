@@ -1,11 +1,22 @@
-<div id="search-component">
-   <input placeholder="Search" #searchBox id="search-box" (input)="search(searchBox.value)" />
+<div class="flex-container"> 
+     
+ <input #searchBox id="search-box"  class="child1"  type="text" (input)="search(searchBox.value)" 
+         placeholder="Search items...">
 
-  <ul class="search-result">
-    <li *ngFor="let hero of heroes$ | async" >
-      <a routerLink="/detail/{{hero.slug}}">
-        {{hero.title}}
-      </a>
-    </li>
-  </ul>
+ <div class="child2">
+ <mat-accordion  multi="false">
+  <mat-expansion-panel  [expanded]="true" *ngFor="let post of hers.posts">
+    <mat-expansion-panel-header>
+        {{ post.title }}
+    </mat-expansion-panel-header> 
+             <div class="post-image">
+      <img [src]="post.imagePath" [alt]="none">
+    </div>
+    <p>{{ post.content }} </p>
+    <mat-action-row>   
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
 </div>
+</div>
+
