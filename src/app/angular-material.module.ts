@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import {
+   MatSidenavModule,
   MatInputModule,
   MatCardModule,
   MatButtonModule,
@@ -11,8 +12,8 @@ import {
   MatSlideToggleModule,
   MatButtonToggleModule,
   MatIconModule,
-  MatAutocompleteModule
-
+  MatAutocompleteModule, 
+ 
 
 } from "@angular/material";
 
@@ -29,7 +30,22 @@ import {
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatIconModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,     
+    MatSidenavModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatToolbarModule,
+ 
   ]
 })
 export class AngularMaterialModule { }

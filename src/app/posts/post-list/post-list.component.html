@@ -1,13 +1,13 @@
  
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-       <div class="search">
-     <mat-card>
+ <div class="search">
+   <mat-card>
            <div class="searchchild">
              <app-post-search></app-post-search>
            </div>
-  </mat-card>
- </div>
-
+  </mat-card> 
+ </div>  
+ 
 
 <mat-accordion multi="true"  *ngIf="posts.length > 0 && !isLoading">
   <mat-expansion-panel  [expanded]="true" *ngFor="let post of posts">
@@ -23,9 +23,8 @@
       <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>      
     </mat-action-row>
-        <mat-action-row *ngIf="userIsAuthenticated">    
-        </mat-action-row>
-    <mat-action-row>
+      
+    <mat-action-row *ngIf="userIsAuthenticated">
      <mat-slide-toggle
           class="example-margin"
           [color]="color"
@@ -33,6 +32,32 @@
          (change)="onChange(post)"
           [disabled]="disabled"> {{post.favorited}}         
       </mat-slide-toggle>      
+
+   <mat-button-toggle-group  name="fontStyle" aria-label="Font Style" #group="matButtonToggleGroup">
+
+  <mat-button-toggle value="thumbsup">
+   <mat-icon svgIcon="thumbs-up"></mat-icon>
+  </mat-button-toggle>
+  
+
+  <mat-button-toggle value=post.favorited>
+    <mat-icon>thumbs_up</mat-icon> 
+  </mat-button-toggle>
+
+  <mat-button-toggle value={{post.favorited}}>
+    <mat-icon>format_align_center</mat-icon>
+  </mat-button-toggle>
+
+  <mat-button-toggle value="post.favorited">
+    <mat-icon>format_align_right</mat-icon>
+  </mat-button-toggle>
+
+  <mat-button-toggle value="post.favorited" disabled>
+    <mat-icon>format_align_justify</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
+
+<div class="example-selected-value">Selected value: {{group.value}}</div>
     
     </mat-action-row>
   </mat-expansion-panel>

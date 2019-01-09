@@ -31,6 +31,7 @@
     "core-js": "^2.5.4",
     "docker": "^1.0.0",
     "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
     "gulp": "^3.9.1",
     "gulp-git": "^2.8.0",
     "hammerjs": "^2.0.8",
