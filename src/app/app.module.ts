@@ -11,18 +11,14 @@ import { ErrorInterceptor } from "./error-interceptor";
 import { ErrorComponent } from "./error/error.component";
 import { AngularMaterialModule } from "./angular-material.module";
 import { PostsModule } from "./posts/posts.module";
-import { SidenavDisableCloseExample } from "./sidenav/sidenav-disable-close-example";
-import { SidenavAutosizeExample } from "./sidenav2/sidenav-autosize-example";
+import { AppMyNavComponent } from './sidenav/app-my-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidenavDisableCloseExample,
-    SidenavAutosizeExample,
     ErrorComponent,  
-
-
+    AppMyNavComponent
   ],
   imports: [
   
@@ -38,7 +34,7 @@ import { SidenavAutosizeExample } from "./sidenav2/sidenav-autosize-example";
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent, SidenavAutosizeExample],
+  bootstrap: [AppComponent],
   entryComponents: [ErrorComponent]
 })
 export class AppModule { }

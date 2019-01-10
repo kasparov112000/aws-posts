@@ -1,0 +1,56 @@
+ // @import "mixins";
+
+ .sidenav-container {
+   height: 100%;
+ }
+
+ .sidenav {
+   width: 175px;
+   box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+   
+ }
+
+ .hero-header__image {
+   background-size: cover;
+ }
+
+ header {
+   position: fixed;
+   z-index: 999;
+   width: 100%;
+
+   nav {
+     display: flex;
+     flex-wrap: wrap;
+     align-items: left;
+     padding: calculateRem(8px) calculateRem(16px);    
+     height: 4rem;
+
+     .mat-raised-button {
+ 
+       position: relative;
+       margin-right: 1rem;
+       z-index: 999;
+     }
+   }
+ }
+
+ .example-card {
+   max-width: 80px;
+   max-height: 40px;
+ }
+
+ .example-header-image {
+   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+   background-size: cover;
+ }
+
+ .example-spacer {
+   flex: auto;
+ }
+
+
+ .example-header-image {
+   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+   background-size: cover;
+ }

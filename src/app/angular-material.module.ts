@@ -13,12 +13,15 @@ import {
   MatButtonToggleModule,
   MatIconModule,
   MatAutocompleteModule, 
- 
+ MatListModule ,
+ MatMenuModule,
 
 } from "@angular/material";
 
 @NgModule({
   exports: [
+    MatMenuModule,
+    MatListModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
