@@ -11,13 +11,13 @@ export class SidenavDisableCloseExample {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
   reason = '';
-
+  
   close(reason: string) {
     this.reason = reason;
     this.sidenav.open();
   }
 
- // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+ shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 }
 
 
