@@ -1,4 +1,4 @@
-import { FlatpickrModule } from 'angularx-flatpickr';
+ 
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
@@ -27,8 +27,7 @@ import { AppMyNavComponent } from './sidenav/app-my-nav.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    PostsModule,
-    FlatpickrModule.forRoot(),
+    PostsModule, 
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
