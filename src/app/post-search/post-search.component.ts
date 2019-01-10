@@ -15,7 +15,7 @@ import { PostsService } from '../posts/posts.service';
 })
 export class PostSearchComponent implements OnInit {
   heroes$: Observable<Post[]>;
-  hers = {};
+  hers: any = {};
   private searchTerms = new Subject<string>();
 
   constructor(private heroService: PostsService) { }
