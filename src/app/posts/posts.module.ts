@@ -9,6 +9,7 @@ import { AngularMaterialModule } from "../angular-material.module";
 import { FavoriteButtonComponent } from "./buttons/favorite-button.component";
 import { ArticleMetaComponent } from "./article-meta.component";
 import { PostSearchComponent } from "../post-search/post-search.component";
+import { DemoModule } from "../events/calendar/module";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PostSearchComponent } from "../post-search/post-search.component";
     CommonModule,
     ReactiveFormsModule,
     AngularMaterialModule,
-    RouterModule
+    RouterModule,
+    DemoModule
   ]
 })
 export class PostsModule { }

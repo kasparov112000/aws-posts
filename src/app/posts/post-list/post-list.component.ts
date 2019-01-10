@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from "@angular/core";
 import { PageEvent } from "@angular/material";
 import { Subscription, of } from "rxjs";
 
@@ -16,11 +16,23 @@ import { ArticleListConfig } from "../article-list-config.model";
   styleUrls: ["./post-list.component.scss"]
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  // posts = [
-  //   { title: "First Post", content: "This is the first post's content" },
-  //   { title: "Second Post", content: "This is the second post's content" },
-  //   { title: "Third Post", content: "This is the third post's content" }
-  // ];
+  
+  @Input()
+  view: string;
+
+  @Input()
+  viewDate: Date;
+
+  @Input()
+  locale: string = 'en';
+
+  @Output()
+  viewChange: EventEmitter<string> = new EventEmitter();
+
+  @Output()
+  viewDateChange: EventEmitter<Date> = new EventEmitter();
+
+  
   posts: Post[] = [];
   isLoading = false;
   totalPosts = 0;

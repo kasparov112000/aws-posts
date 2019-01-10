@@ -1,3 +1,4 @@
+import { FlatpickrModule } from 'angularx-flatpickr';
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
@@ -13,24 +14,25 @@ import { PostsModule } from "./posts/posts.module";
 import { SidenavDisableCloseExample } from "./sidenav/sidenav-disable-close-example";
 import { SidenavAutosizeExample } from "./sidenav2/sidenav-autosize-example";
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SidenavDisableCloseExample,
     SidenavAutosizeExample,
-    ErrorComponent 
+    ErrorComponent,  
+
+
   ],
   imports: [
+  
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    PostsModule
+    PostsModule,
+    FlatpickrModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
