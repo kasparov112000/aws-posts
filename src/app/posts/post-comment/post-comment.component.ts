@@ -12,11 +12,12 @@ import { AuthData } from 'src/app/auth/auth-data.model';
 export class PostCommentComponent implements OnInit {
   currentUser: any;
 
+
   constructor(
     private userService: AuthService
   ) { }
 
-  @Input() comment: Comment;
+  @Input() comment: any = {};
   @Output() deleteComment = new EventEmitter<boolean>();
 
   canModify: boolean;

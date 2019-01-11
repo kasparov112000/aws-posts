@@ -10,11 +10,12 @@ import { FavoriteButtonComponent } from "./buttons/favorite-button.component";
 import { ArticleMetaComponent } from "./article-meta.component";
 import { PostSearchComponent } from "../post-search/post-search.component";
 import { DemoModule } from "../events/calendar/module";
+import { PostCommentComponent } from "./post-comment/post-comment.component";
 
 
 @NgModule({
 
-  declarations: [ PostSearchComponent, PostCreateComponent, PostListComponent, FavoriteButtonComponent, ArticleMetaComponent],
+  declarations: [PostCommentComponent, PostSearchComponent, PostSearchComponent, PostCreateComponent, PostListComponent, FavoriteButtonComponent, ArticleMetaComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

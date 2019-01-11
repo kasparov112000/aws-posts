@@ -20,6 +20,8 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { AdminLayoutComponent } from './admin-layout.component';
+import { ComponentsModule } from '../../components/components.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    ComponentsModule
   ],
   declarations: [
     DashboardComponent,
@@ -41,6 +44,8 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    AdminLayoutComponent
+     
   ]
 })
 
