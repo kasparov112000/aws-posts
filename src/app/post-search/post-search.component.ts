@@ -26,7 +26,7 @@ export class PostSearchComponent implements OnInit {
     this.heroes$.subscribe(heroes => {
       this.hers = heroes;
       //   console.log('$$$$$$$$$$$$$$$$$$$$$$');
-      //   console.log(this.hers);
+      //   console.log(this.hers); //////////////////////////////////////
     })
 
   }
