@@ -15,7 +15,7 @@ export class AppMyNavComponent implements OnInit {
   progressBarMode: string;
   menuItems: any[];
   appShowAuthed = false;
-  
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -23,7 +23,7 @@ export class AppMyNavComponent implements OnInit {
   isAuthenticated: boolean;
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
- 
+
   constructor(private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
     private router: Router) { }
@@ -46,5 +46,8 @@ export class AppMyNavComponent implements OnInit {
       { link: '/' }
     ];
 
+  }
+  onLogout() {
+    this.authService.logout();
   }
 }

@@ -30,10 +30,11 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <section>
-          <a mat-raised-button routerLink="mat-menu">
-              Donates
-          </a>
-           </section>
+          <button mat-raised-button routerLink="mat-menu">
+              Donate...
+          </button>
+      </section>
+          
            <button mat-button [matMenuTriggerFor]="animals">Menu</button>
            <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
 
@@ -82,8 +83,20 @@
              <button mat-menu-item>Blue Spiny Lizard</button>
              <button mat-menu-item disabled>Velociraptor</button>
            </mat-menu> 
-            <!-- This fills the remaining space of the current row -->
+          
    <span class="example-spacer"></span>
+
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent">Create Post</a>
+    </li>
+
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="auth/login" routerLinkActive="mat-accent">Login</a>
+    </li>
+
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</a>
+    </li>
          
    <mat-card-header>
               <div mat-card-avatar class="hero-header__image"
