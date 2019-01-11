@@ -1,19 +1,20 @@
  
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container color="accent" class="sidenav-container">
     
 
-  <mat-sidenav
+  <mat-sidenav color="accent"
     #drawer
     class="sidenav"
     fixedInViewport="false"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
-   <mat-toolbar color="primary">Biolinkdepot.org</mat-toolbar>      
+
+   <mat-toolbar color="accent">Biolinkdepot.org</mat-toolbar>      
     <mat-nav-list>
       <a mat-list-item routerLink="/">Home</a>
       <a mat-list-item routerLink="/">Blogs</a>
-      <a mat-list-item routerLink="events/calendar">Events/calendar</a>   
+      <a mat-list-item routerLink="events/calendar">Events</a>   
        <a mat-list-item routerLink='/settings'>Profile</a>  
        <a mat-list-item routerLink="/dashboard">Inventory</a>    
     </mat-nav-list>  
@@ -21,7 +22,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="accent">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -30,7 +31,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <section>
-          <button mat-raised-button routerLink="mat-menu">
+          <button mat-raised-button color="primary" routerLink="/admin/dashboard">
               Donate...
           </button>
       </section>

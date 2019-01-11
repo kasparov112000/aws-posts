@@ -14,9 +14,11 @@ export class AuthService {
   private token: string;
   private tokenTimer: any;
   private userId: string;
+  
   private authStatusListener = new Subject<boolean>();
+  private userListener = new Subject<AuthData>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   getToken() {
     return this.token;
@@ -31,15 +33,26 @@ export class AuthService {
   }
 
   getAuthStatusListener() {
-    this.authStatusListener.asObservable().subscribe(val => 
+    this.authStatusListener.asObservable().subscribe(val =>
       console.log(val));
     return this.authStatusListener.asObservable();
+  }
+
+  getUserListener() {
+    this.userListener.asObservable().subscribe(val =>
+      console.log(val));
+    return this.userListener.asObservable();
   }
 
   createUser(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
     this.http.post(BACKEND_URL + "/signup", authData).subscribe(
-      () => {
+      (data: AuthData) => {
+        console.log('the user dataaaaaaaaaaaaaaaaa from login');
+        console.log(data);
+
+        this.userListener.next(data);
+        this.authStatusListener.next(true);
         this.router.navigate(["/"]);
       },
       error => {
@@ -59,7 +72,8 @@ export class AuthService {
         response => {
           const token = response.token;
           this.token = token;
-          if (token) {
+          if (token)
+          {
             const expiresInDuration = response.expiresIn;
             this.setAuthTimer(expiresInDuration);
             this.isAuthenticated = true;
@@ -82,12 +96,14 @@ export class AuthService {
 
   autoAuthUser() {
     const authInformation = this.getAuthData();
-    if (!authInformation) {
+    if (!authInformation)
+    {
       return;
     }
     const now = new Date();
     const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
-    if (expiresIn > 0) {
+    if (expiresIn > 0)
+    {
       this.token = authInformation.token;
       this.isAuthenticated = true;
       this.userId = authInformation.userId;
@@ -129,7 +145,8 @@ export class AuthService {
     const token = localStorage.getItem("token");
     const expirationDate = localStorage.getItem("expiration");
     const userId = localStorage.getItem("userId");
-    if (!token || !expirationDate) {
+    if (!token || !expirationDate)
+    {
       return;
     }
     return {

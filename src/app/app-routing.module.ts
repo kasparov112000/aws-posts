@@ -9,8 +9,10 @@ const routes: Routes = [
   { path: "create", component: PostCreateComponent, canActivate: [AuthGuard] },
   { path: "edit/:postId", component: PostCreateComponent, canActivate: [AuthGuard] },
   { path: "favorite/:postId", component: PostCreateComponent, canActivate: [AuthGuard] },
-  { path: "auth", loadChildren: "./auth/auth.module#AuthModule"},
-  { path: "events", loadChildren: "./events/events.module#EventsModule"}
+  { path: "auth", loadChildren: "./auth/auth.module#AuthModule" },
+  { path: "events", loadChildren: "./events/events.module#EventsModule" },
+  { path: "admin", loadChildren: "./admin/layouts/admin-layout/admin-layout.module#AdminLayoutModule" }
+
 ];
 
 @NgModule({
@@ -18,4 +20,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
