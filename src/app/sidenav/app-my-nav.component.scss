@@ -1,38 +1,34 @@
 mat-sidenav-container {
-  width: 100% !important;
-  height: calc(100vh - 64px) !important;
+  width: 100%;
+  height: calc(100vh - 64px);
 }
 
 mat-sidenav {
-  background-color: red !important;
+  background-color: red;
   box-shadow: 10px 0 6px rgba(0, 0, 0, .24);
 }
 
 div {
-  display: flex;   
+  display: flex;
   align-items: 100%;
   background-color: yellow;
   height: 4000px;
   width: 100%;
- 
+
 }
+
 router-outlet {
   display: flex;
-   align-content: center;
-   
+  align-content: center;
+
 }
 
 mat-toolbar {
   height: 64px;
   position: relative;
-  z-index: 100;
+
 }
 
 .example-spacer {
   flex: auto;
-}
-
-.search {
-  flex: auto;
-  width: 5px;
 }

@@ -1,12 +1,17 @@
-<mat-toolbar color="primary">
- 
-  
+    <mat-toolbar class="mytoolbar"  fixedInViewport="true" color="accent">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+         (click)="drawer.toggle()"
+        *ngIf="(isHandset$ | async)">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
       <section>
           <button mat-raised-button color="primary" routerLink="/admin/dashboard">
               Donate...
           </button>
       </section>
-       
+          
            <button mat-button [matMenuTriggerFor]="animals">Menu</button>
            <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
 
@@ -72,23 +77,35 @@
 
     <li *ngIf="userIsAuthenticated">
       <a mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</a>
-    </li>  
-
+    </li>
+         
    <mat-card-header>
-              <section mat-card-avatar class="hero-header__image"
-              [ngStyle]="{'background-image': 'currentUser.image'}">
-             </section>
+              <div mat-card-avatar class="hero-header__image"
+              [ngStyle]="{'background-image': 'currentUser.image'}"
+              >
+             </div>
    </mat-card-header>
- 
-</mat-toolbar>
-<mat-sidenav-container>
+              <!-- <button mat-button [matMenuTriggerFor]="login()">Login</button> 
+              <p>
+                  <button mat-button *appShowAuthed="false" [routerLink]="['/login']">Sign in</button>   <button mat-button *appShowAuthed="false" [routerLink]="['/register']">sign up</button>
+                </p> 
+               
+                <a routerLink="/profile/{{currentUser.username}}" >  <img [src]="currentUser.image" background-size:cover height="50" width="50"/> </a>
+                 <mat-card-header>
+                 <div mat-card-avatar class="example-header-image"></div>  
+               </mat-card-header>   
+                -->
+   </mat-toolbar>
+<div class="main-content">
+<mat-sidenav-container color="accent" class="sidenav-container">
 
- 
- <mat-sidenav  
-   mode="side"
-            opened="true"
-            [fixedInViewport]="true"
-            [fixedTopGap]="64">
+  <mat-sidenav color="accent"
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
 
    
     <mat-toolbar color="accent"> Biolinkdepot.org
@@ -102,7 +119,10 @@
        <a mat-list-item routerLink="/dashboard">Inventory</a>    
     </mat-nav-list>  
   </mat-sidenav>
-  
-  <div> <router-outlet></router-outlet>  </div>
-</mat-sidenav-container>
+
+  <mat-sidenav-content>
  
+         <router-outlet></router-outlet> 
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>

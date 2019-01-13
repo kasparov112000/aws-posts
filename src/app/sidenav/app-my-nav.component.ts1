@@ -1,5 +1,3 @@
- 
-import {VERSION} from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
@@ -12,12 +10,16 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './app-my-nav.component.html',
   styleUrls: ['./app-my-nav.component.scss']
 })
-export class AppMyNavComponent {  
+
+export class AppMyNavComponent implements OnInit {
   progressBarMode: string;
   menuItems: any[];
   appShowAuthed = false;
 
- 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
   isAuthenticated: boolean;
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
