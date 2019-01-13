@@ -1,56 +1,38 @@
- // @import "mixins";
+mat-sidenav-container {
+  width: 100% !important;
+  height: calc(100vh - 64px) !important;
+}
 
- .sidenav-container {
-   height: 100%;
- }
+mat-sidenav {
+  background-color: red !important;
+  box-shadow: 10px 0 6px rgba(0, 0, 0, .24);
+}
 
- .sidenav {
-   width: 175px;
-   box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
-   
- }
-
- .hero-header__image {
-   background-size: cover;
- }
-
- header {
-   position: fixed;
-   z-index: 999;
-   width: 100%;
-
-   nav {
-     display: flex;
-     flex-wrap: wrap;
-     align-items: left;
-     padding: calculateRem(8px) calculateRem(16px);    
-     height: 4rem;
-
-     .mat-raised-button {
+div {
+  display: flex;   
+  align-items: 100%;
+  background-color: yellow;
+  height: 4000px;
+  width: 100%;
  
-       position: relative;
-       margin-right: 1rem;
-       z-index: 999;
-     }
-   }
- }
+}
+router-outlet {
+  display: flex;
+   align-content: center;
+   
+}
 
- .example-card {
-   max-width: 80px;
-   max-height: 40px;
- }
+mat-toolbar {
+  height: 64px;
+  position: relative;
+  z-index: 100;
+}
 
- .example-header-image {
-   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-   background-size: cover;
- }
+.example-spacer {
+  flex: auto;
+}
 
- .example-spacer {
-   flex: auto;
- }
-
-
- .example-header-image {
-   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-   background-size: cover;
- }
+.search {
+  flex: auto;
+  width: 5px;
+}

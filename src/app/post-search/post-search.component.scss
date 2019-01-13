@@ -1,5 +1,8 @@
  /* HeroSearch private styles */
+
+ 
  .search-result li {
+   border-top: 10rem;
    border-bottom: 1px solid gray;
    border-left: 1px solid gray;
    border-right: 1px solid gray;
@@ -30,12 +33,14 @@
    color: white;
  }
 
- #searrrch-box {
-   width: 200px;
-   height: 20px;
+ #search-box {
+   width: 400px;
+   height: 50px;
    background: white;
    overflow: right;
    float: auto;
+   justify-content: center;
+   position: center;
  }
 
  #container1 {
@@ -45,46 +50,11 @@
  ul.search-result {
    margin-top: 5;
    padding-left: 0;
- }
-
- .example-headers-align .mat-expansion-panel-header-title,
- .example-headers-align .mat-expansion-panel-header-description {
-   display: flex;
-
- }
-
- .example-headers-align .mat-expansion-panel-header-description {
-   justify-content: space-between;
-   align-items: center;
- }
-
- .flex-container {
-   display: flex;
-   flex-direction: column;
-   flex-wrap: wrap; 
-   align-items: center;
-   
- }
-
- .child1 {
- 
-   flex: 3;
-   order: 1; 
-   height: 25px;
-   width: 600px;
-   text-align: center;
-   
- }
-
- .child2 {
-
-  flex: 1;
-   order: 2;
-
- }
-
-
+ } 
+  
  .post-image img {
   width: 25%;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
+
+ 

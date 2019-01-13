@@ -12,13 +12,16 @@ import { ErrorComponent } from "./error/error.component";
 import { AngularMaterialModule } from "./angular-material.module";
 import { PostsModule } from "./posts/posts.module";
 import { AppMyNavComponent } from './sidenav/app-my-nav.component';
+import { PostSearchComponent } from "./post-search/post-search.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ErrorComponent,  
-    AppMyNavComponent
+    AppMyNavComponent,
+ 
   ],
   imports: [
   
@@ -27,7 +30,9 @@ import { AppMyNavComponent } from './sidenav/app-my-nav.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    PostsModule, 
+    PostsModule,
+    FormsModule,
+    ReactiveFormsModule, 
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

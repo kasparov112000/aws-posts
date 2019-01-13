@@ -8,7 +8,17 @@
     <mat-form-field>
       <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
       <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+      
     </mat-form-field>
+     
+   <mat-form-field>   
+  <mat-select multiple="true" [(value)]="selected">
+    <mat-option *ngFor="let role of roles" [value]="role.value">{{ role.viewValue }}</mat-option>
+  </mat-select>     
+   </mat-form-field>
+
+<p>You selected: {{selected}}</p>
+ 
     <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Signup</button>
   </form>
 </mat-card>

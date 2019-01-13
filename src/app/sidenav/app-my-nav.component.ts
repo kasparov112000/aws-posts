@@ -1,3 +1,5 @@
+ 
+import {VERSION} from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
@@ -10,8 +12,7 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './app-my-nav.component.html',
   styleUrls: ['./app-my-nav.component.scss']
 })
-
-export class AppMyNavComponent implements OnInit {
+export class AppMyNavComponent {  
   progressBarMode: string;
   menuItems: any[];
   appShowAuthed = false;
@@ -31,7 +32,6 @@ export class AppMyNavComponent implements OnInit {
 
 
   ngOnInit() {
-    this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {

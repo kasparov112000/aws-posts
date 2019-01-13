@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Subscription } from "rxjs";
-
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { PostsService } from "../posts.service";
 import { Post } from "../post.model";
 import { mimeType } from "./mime-type.validator";
@@ -11,7 +11,7 @@ import { AuthService } from "../../auth/auth.service";
 @Component({
   selector: "app-post-create",
   templateUrl: "./post-create.component.html",
-  styleUrls: ["./post-create.component.css"]
+  styleUrls: ["./post-create.component.scss"]
 })
 export class PostCreateComponent implements OnInit, OnDestroy {
   enteredTitle = "";
@@ -23,6 +23,31 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   private mode = "create";
   private postId: string;
   private authStatusSub: Subscription;
+  htmlContent = '';
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  }
 
   constructor(
     public postsService: PostsService,

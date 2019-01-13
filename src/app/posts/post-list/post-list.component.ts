@@ -16,7 +16,7 @@ import { ArticleListConfig } from "../article-list-config.model";
   styleUrls: ["./post-list.component.scss"]
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  
+
   @Input()
   view: string;
 
@@ -32,7 +32,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   @Output()
   viewDateChange: EventEmitter<Date> = new EventEmitter();
 
-  
+
   posts: Post[] = [];
   isLoading = false;
   totalPosts = 0;
@@ -53,7 +53,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     public postsService: PostsService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   @Input() limit: number;
 
@@ -76,7 +76,7 @@ export class PostListComponent implements OnInit, OnDestroy {
         console.log(this.posts);
 
       });
-    this.userIsAuthenticated = this.authService.getIsAuth();
+
     this.authStatusSub = this.authService
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
@@ -94,46 +94,51 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.results = [];
     //console.log(Object.entries(this.query));
     // Create limit and offset filter (if necessary)
-    if (this.limit) {
+    if (this.limit)
+    {
       this.query.filters.limit = this.limit;
-      this.query.filters.offset =  (this.limit * (this.currentPage - 1));
+      this.query.filters.offset = (this.limit * (this.currentPage - 1));
     }
 
-   // this.articlesService.query(this.query)
- //   .subscribe(data => {
-   //   this.isLoading = false;
-   //   this.results = data.articles;
+    // this.articlesService.query(this.query)
+    //   .subscribe(data => {
+    //   this.isLoading = false;
+    //   this.results = data.articles;
 
-      // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
-   //   this.totalPages = Array.from(new Array(Math.ceil(data.articlesCount / this.limit)), (val, index) => index + 1);
-  //  });
+    // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
+    //   this.totalPages = Array.from(new Array(Math.ceil(data.articlesCount / this.limit)), (val, index) => index + 1);
+    //  });
   }
   onChange(article) {
- 
+
     console.log('useer is auth' + this.userIsAuthenticated);
-  this.isSubmitting = true;
+    this.isSubmitting = true;
 
-       if (!this.userIsAuthenticated) {
-          this.router.navigateByUrl('auth/login');
-          return of(null);
-        }
-        
-        // Favorite the article if it isn't favorited yet
-        console.log('article.favorited::: ' + article.slug)
-        if (!article.favorited) {
-          console.log('article not favorited ' + article.favorited);
-         // this.postsService.favorite(article.slug,article);
-          return this.postsService.favorite(article, this.userId);          
-        // Otherwise, unfavorite the article
-        } else {
-      
+    if (!this.userIsAuthenticated)
+    {
+      this.router.navigateByUrl('auth/login');
+      return of(null);
+    }
+
+    // Favorite the article if it isn't favorited yet
+    console.log('article.favorited::: ' + article.slug)
+    if (!article.favorited)
+    {
+      console.log('article not favorited ' + article.favorited);
+      // this.postsService.favorite(article.slug,article);
+      return this.postsService.favorite(article, this.userId);
+      // Otherwise, unfavorite the article
+    } else
+    {
+
       //   return this.postsService.unfavorite(article.slug)
-           console.log('article favorited ' + article.favorited);
+      console.log('article favorited ' + article.favorited);
 
-          return this.postsService.unfavorite(article.slug)
-          }}
- 
-  
+      return this.postsService.unfavorite(article.slug)
+    }
+  }
+
+
   onChangedPage(pageData: PageEvent) {
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;

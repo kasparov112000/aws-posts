@@ -15,6 +15,7 @@ import {
   MatAutocompleteModule, 
  MatListModule ,
  MatMenuModule,
+MatSelectModule
 
 } from "@angular/material";
 
@@ -48,6 +49,7 @@ import {
     MatSidenavModule,
     MatSlideToggleModule,
     MatToolbarModule,
+     MatSelectModule 
  
   ]
 })

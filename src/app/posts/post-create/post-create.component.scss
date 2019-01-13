@@ -19,3 +19,11 @@ input[type="file"] {
 .image-preview img {
   height: 100%;
 }
+ 
+:host {
+  display: block;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  width: 80rem;
+
+}

@@ -1,22 +1,22 @@
-<div class="flex-container"> 
-     
- <input autocomplete="false" #searchBox id="search-box"  class="child1"  type="text" (input)="search(searchBox.value)" 
-         placeholder="Search items...">
 
- <div class="child2">
- <mat-accordion  multi="true">
-  <mat-expansion-panel  [expanded]="true" *ngFor="let post of hers.posts">
+
+ <input autocomplete="off" #searchBox id="search-box"  class="child1" (onblur)="myclear(searchBox)" type="text" (input)="search(searchBox.value)" 
+         placeholder="Search items...">
+  
+  <mat-expansion-panel  [expanded]="false" *ngFor="let post of hers.posts">  
     <mat-expansion-panel-header>
-        {{ post.title }}
+   
     </mat-expansion-panel-header> 
-             <div class="post-image">
+    <div class="post-image">
       <img [src]="post.imagePath" [alt]="none">
     </div>
     <p>{{ post.content }} </p>
-    <mat-action-row>   
+    <mat-action-row>  
+    
     </mat-action-row>
+  
+ 
   </mat-expansion-panel>
-</mat-accordion>
-</div>
-</div>
+
+ 
 

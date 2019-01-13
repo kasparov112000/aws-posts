@@ -1,21 +1,30 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { Subject } from "rxjs";
+import { Subject, ReplaySubject } from "rxjs";
 
 import { environment } from "../../environments/environment";
 import { AuthData } from "./auth-data.model";
 
 const BACKEND_URL = environment.apiUrl + "/user/";
-
 @Injectable({ providedIn: "root" })
+
 export class AuthService {
-  private isAuthenticated = false;
+
+  private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
+  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+
+  private currentUserSubject = new ReplaySubject<{}>(1);
+  public currentUser = this.currentUserSubject.asObservable();
+
+  private isAdminSubject = new ReplaySubject<boolean>(1);
+  public isAdmin = this.isAdminSubject.asObservable();
+
   private token: string;
   private tokenTimer: any;
   private userId: string;
-  
-  private authStatusListener = new Subject<boolean>();
+
+
   private userListener = new Subject<AuthData>();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -28,14 +37,16 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  getIsAdmin() {
+    return this.isAdmin;
+  }
+
   getUserId() {
     return this.userId;
   }
 
   getAuthStatusListener() {
-    this.authStatusListener.asObservable().subscribe(val =>
-      console.log(val));
-    return this.authStatusListener.asObservable();
+    return this.isAuthenticated;
   }
 
   getUserListener() {
@@ -44,19 +55,20 @@ export class AuthService {
     return this.userListener.asObservable();
   }
 
-  createUser(email: string, password: string) {
-    const authData: AuthData = { email: email, password: password };
+  createUser(email: string, password: string, roles: string[]) {
+    const authData: AuthData = { email: email, password: password, roles: roles };
     this.http.post(BACKEND_URL + "/signup", authData).subscribe(
       (data: AuthData) => {
         console.log('the user dataaaaaaaaaaaaaaaaa from login');
         console.log(data);
 
         this.userListener.next(data);
-        this.authStatusListener.next(true);
+        this.isAuthenticatedSubject.next(true);
+        //  this.isAdminSubject.next(data.isAdmin);
         this.router.navigate(["/"]);
       },
       error => {
-        this.authStatusListener.next(false);
+        this.isAuthenticatedSubject.next(false);
       }
     );
   }
@@ -64,7 +76,7 @@ export class AuthService {
   login(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
     this.http
-      .post<{ token: string; expiresIn: number; userId: string }>(
+      .post<{ any, token: string; expiresIn: number; userId: string }>(
         BACKEND_URL + "login",
         authData
       )
@@ -72,24 +84,31 @@ export class AuthService {
         response => {
           const token = response.token;
           this.token = token;
+          console.log('the user dataaaaaaaaaaaaaaaaa from login');
+          console.log(response);
+          this.userListener.next();
+
           if (token)
           {
             const expiresInDuration = response.expiresIn;
             this.setAuthTimer(expiresInDuration);
-            this.isAuthenticated = true;
+            this.isAuthenticatedSubject.next(true);
             this.userId = response.userId;
-            this.authStatusListener.next(true);
+            this.currentUserSubject.next(response);
+
             const now = new Date();
             const expirationDate = new Date(
               now.getTime() + expiresInDuration * 1000
+
             );
             console.log(expirationDate);
             this.saveAuthData(token, expirationDate, this.userId);
             this.router.navigate(["/"]);
+
           }
         },
         error => {
-          this.authStatusListener.next(false);
+          this.isAuthenticatedSubject.next(false);
         }
       );
   }
@@ -105,17 +124,17 @@ export class AuthService {
     if (expiresIn > 0)
     {
       this.token = authInformation.token;
-      this.isAuthenticated = true;
+      this.isAuthenticatedSubject.next(true);
       this.userId = authInformation.userId;
       this.setAuthTimer(expiresIn / 1000);
-      this.authStatusListener.next(true);
+
     }
   }
 
   logout() {
     this.token = null;
-    this.isAuthenticated = false;
-    this.authStatusListener.next(false);
+    this.isAuthenticatedSubject.next(false);
+
     this.userId = null;
     clearTimeout(this.tokenTimer);
     this.clearAuthData();

@@ -21,6 +21,7 @@ export class AuthService {
   //   audience: AUTH_CONFIG.AUDIENCE,
   //   scope: AUTH_CONFIG.SCOPE
   // });
+  
   private token: string;
   accessToken: string;
   userProfile: any;

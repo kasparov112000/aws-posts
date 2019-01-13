@@ -26,7 +26,7 @@ export class PostSearchComponent implements OnInit {
     this.heroes$.subscribe(heroes => {
       this.hers = heroes;
       //   console.log('$$$$$$$$$$$$$$$$$$$$$$');
-      //   console.log(this.hers); //////////////////////////////////////
+      //   console.log(this.hers);s
     })
 
   }
@@ -45,5 +45,10 @@ export class PostSearchComponent implements OnInit {
     );
     console.log('the heroues**************************');
     console.log(this.heroes$);
+  }
+
+  public myclear(x): void {    
+    x.value = '';
+    this.hers = {};
   }
 }

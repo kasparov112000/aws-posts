@@ -157,7 +157,7 @@ export class PostsService {
 
     console.log('i am in post.service.ts favorite function' + post);
     return this.http.post<any>(BACKEND_URL + post.slug + '/favorite', body).subscribe(responseData => {
-     // console.log('favorite post response' + responseData);
+      // console.log('favorite post response' + responseData);
       // this.router.navigate(["/auth/login"]);
     });
   }
@@ -172,15 +172,15 @@ export class PostsService {
       // if not search term, return empty hero array.
       return of([]);
     }
-  
-   return this.http.get<Post[]>(`${BACKEND_URL}?name=${term}`);
-   
-   //.pipe(
-   //    tap(_ => this.log1(`found posts "${term}"`),
-  //     catchError(this.handleError<Post[]>('searchHeroes', []))
-   //    )
 
-   //  );
+    return this.http.get<Post[]>(`${BACKEND_URL}?name=${term}`);
+
+    //.pipe(
+    //    tap(_ => this.log1(`found posts "${term}"`),
+    //     catchError(this.handleError<Post[]>('searchHeroes', []))
+    //    )
+
+    //  );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

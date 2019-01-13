@@ -1,7 +1,16 @@
 :host {
   display: block;
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-left: 2rem;
+  width: 80rem;
+
+}
+
+.search {
+  width: 80rem;
+  text-align: center;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
 }
 
 mat-spinner {
@@ -24,7 +33,12 @@ mat-paginator {
   width: 100%;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
+
 .example-button-row button,
 .example-button-row a {
   margin-right: 8px;
+}
+
+.app-post-search {
+  width: 500px;
 }

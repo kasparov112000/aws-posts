@@ -1,18 +1,15 @@
   
 <mat-spinner *ngIf="isLoading"></mat-spinner>
- <div class="search">
-   <mat-card>
-           <div class="searchchild">
-             <app-post-search></app-post-search>
-           </div>
+  
+   <mat-card class="search">    
+             <app-post-search class="search"></app-post-search>        
   </mat-card> 
- </div>  
-
+ 
 
 <mat-accordion multi="true"  *ngIf="posts.length > 0 && !isLoading">
   <mat-expansion-panel  [expanded]="true" *ngFor="let post of posts">
     <mat-expansion-panel-header>
-    Post:  {{ post.id }}    creator:   {{ post.creator }}
+    Post:  {{ post.title }}    creator:   {{ post.creator }}
     </mat-expansion-panel-header>
     
     <div *ngIf="post.imagePath" class="post-image">
