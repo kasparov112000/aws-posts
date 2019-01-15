@@ -155,6 +155,10 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
+   myFunction(x) {
+    x.classList.toggle("fa-thumbs-down");
+  }
+
   ngOnDestroy() {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();

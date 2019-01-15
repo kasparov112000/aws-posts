@@ -8,7 +8,7 @@ export interface Roles {
   value: string;
   viewValue: string;
 }
- 
+
 
 @Component({
   templateUrl: "./signup.component.html",
@@ -17,19 +17,19 @@ export interface Roles {
 export class SignupComponent implements OnInit, OnDestroy {
   isLoading = false;
   selected: any;
-  
+
   private authStatusSub: Subscription;
- 
- 
+
+
   roles: Roles[] = [
-    {value: 'visitor-0', viewValue: 'Visitor'},
-    {value: 'register-1', viewValue: 'Regular User'},
-    {value: 'volunteer-2', viewValue: 'Volunteer'},
-    {value: 'teacher-3', viewValue: 'Teacher'},
-    {value: 'admin-4', viewValue: 'Admin'}
+    { value: 'visitor-0', viewValue: 'Visitor' },
+    { value: 'register-1', viewValue: 'Regular User' },
+    { value: 'volunteer-2', viewValue: 'Volunteer' },
+    { value: 'teacher-3', viewValue: 'Teacher' },
+    { value: 'admin-4', viewValue: 'Admin' }
   ];
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
@@ -40,11 +40,12 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   onSignup(form: NgForm) {
-    if (form.invalid) {
+    if (form.invalid)
+    {
       return;
     }
     this.isLoading = true;
-    
+
     this.authService.createUser(form.value.email, form.value.password, this.selected);
     console.log(this.selected);
   }

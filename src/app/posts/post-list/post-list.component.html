@@ -28,7 +28,9 @@
           [checked]="post.favorited"
          (change)="onChange(post)"
           [disabled]="disabled"> {{post.favorited}}         
-      </mat-slide-toggle>      
+      </mat-slide-toggle>   
+      <i (onclick)="myFunction(this)" class="fa fa-thumbs-up"></i>
+   
         <button mat-fab 
         (click)="onChange(post)"
         *ngIf="post.favorited"color="primary">Primary</button>
